@@ -1,0 +1,46 @@
+package cart_page_test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class checkout {
+
+    WebDriver driver;
+
+    @BeforeClass
+    public void setUp() {
+        // Set path to your WebDriver (adjust as needed)
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://www.daburshop.com/checkouts/");
+    }
+
+    @Test
+    public void verifyEmailField() {
+        WebElement emailField = driver.findElement(By.xpath("//input[@id='email']"));
+        Assert.assertTrue(emailField.isDisplayed(), "Email field is not displayed");
+    }
+
+    @Test
+    public void verifyCountryDropdown() {
+        WebElement countryDropdown = driver.findElement(By.xpath("//select[@id='Select352']"));
+        Assert.assertTrue(countryDropdown.isDisplayed(), "Country dropdown is not displayed");
+    }
+
+    @Test
+    public void verifyFirstNameField() {
+        WebElement firstNameField = driver.findElement(By.name("firstName"));
+        Assert.assertTrue(firstNameField.isDisplayed(), "First name field is not displayed");
+    }
+
+    @AfterClass
+    public void tearDown() {
+        driver.quit();
+    }
+}
